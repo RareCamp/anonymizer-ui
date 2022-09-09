@@ -1070,6 +1070,18 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bitarray/es6@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@bitarray/es6/-/es6-1.1.2.tgz#80cecde885038c124de7f37c5b5928299156ab16"
+  integrity sha512-1AlNZKfAz3wE/CVDCUsQ2IeDYiT3Tu+EYkBULmm1a/1sariqt7T/q8hBJKJt0ByhgwUo/nfqrSu6dvtfZasHsw==
+  dependencies:
+    "@bitarray/typedarray" "^1.1.1"
+
+"@bitarray/typedarray@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@bitarray/typedarray/-/typedarray-1.1.1.tgz#f066f4a05ceb24f91a1bc4cc392e01b0ca13e082"
+  integrity sha512-w7wqtXDYgidHKeOnexeS4IpcqGY9lM60vFtibarC4XXlYN0olUbCPDItCxr7TTtytt+19+EZVmklajBS9/hLog==
+
 "@csstools/normalize.css@*":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
