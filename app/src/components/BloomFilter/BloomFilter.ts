@@ -2,6 +2,8 @@ import * as crypto from 'crypto';
 // gross, but works for the moment
 import BitArray from '/node_modules/@bitarray/es6/dist/cjs/src/bitarray.js';
 
+// tsc --downlevelIteration  BloomFilter.ts
+
 class BloomFilter {
     bf_len: number;
     bf_num_hash_func: number;
@@ -23,21 +25,22 @@ class BloomFilter {
             console.log('val: ', val);
             const hash1 = crypto.createHash('sha1').update(val).digest('hex');
             console.log('hash1: ', hash1);
-            // const int1 = BigInt(parseInt(hash1, 16));
+            // need to convert hex to BigInt to avoid rounding/inaccuracy issues
             const int1 = BigInt('0x' + hash1);
             console.log('int1: ', int1);
             const hash2 = crypto.createHash('md5').update(val).digest('hex');
             console.log('hash2: ', hash2);
-            // const int2 = BigInt(parseInt(hash2, 16));
+            // need to convert hex to BigInt to avoid rounding/inaccuracy issues
             const int2 = BigInt('0x' + hash2);
             console.log(int2);
 
             for (const i of Array(this.bf_num_hash_func).keys()) {
                 console.log('i: ', i);
+                // need a BigInt cast so we can do BigInt math
                 const _i = BigInt(i);
                 let gi = int1 + _i*int2;
                 console.log('gi: ', gi);
-                // gi = Math.trunc(gi % this.bf_len);
+                // since gi is already a BigInt bc int1 and 2 are BigInts, we need to cast bf_len as well
                 gi = gi % BigInt(this.bf_len);
                 console.log('gi: ', gi);
                 bloom_set[gi] = true;
@@ -46,12 +49,6 @@ class BloomFilter {
             console.log('\n\n');
         });
 
-        // const hash1 = crypto.createHash('sha1').update('hello world').digest('hex');
-        // const hash2 = crypto.createHash('md5').update('hello world').digest('hex');
-        // console.log(hash1);
-        // console.log(hash2);
-        // bloom_set[0] = true;
-        // bloom_set[16] = true;
         const bloom_set_string = String(bloom_set).split(' ').join('');
         console.log(bloom_set_string);
     }
