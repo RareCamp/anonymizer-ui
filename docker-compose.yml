@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+    ui:
+      container_name: anonymizer-ui
+      env_file:
+          - anonymizer_ui.env
+      restart: unless-stopped
+      build: ./app/
+      command: yarn start
+      volumes:
+          - ./app:/app
+      ports:
+          - "${PORT-3000}:3000"
+      # environment:
+          # https://stackoverflow.com/a/59976450/1083976 - polling results in high cpu, but shouldn't be necessary inside a docker container anyways for hot reload to work
+          # - CHOKIDAR_USEPOLLING=true  # to enable hot reloading
+      stdin_open: true
+      tty: true
